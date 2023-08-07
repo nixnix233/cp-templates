@@ -11,7 +11,7 @@ int norm(int x) {
 }
 template<class T>
 T power(T a, i64 b, T base=1) {
-	T res = std::move(base);
+    T res = std::move(base);
     for (; b; b /= 2, a *= a) {
         if (b % 2) {
             res *= a;
