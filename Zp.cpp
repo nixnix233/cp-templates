@@ -10,8 +10,8 @@ int norm(int x) {
     return x;
 }
 template<class T>
-T power(T a, i64 b) {
-    T res = 1;
+T power(T a, i64 b, T base=1) {
+	res = std::move(base);
     for (; b; b /= 2, a *= a) {
         if (b % 2) {
             res *= a;
