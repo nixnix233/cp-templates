@@ -1,21 +1,21 @@
 template <typename T>
 struct Fenwick {
-    int n;
-    std::vector<T> a;
-    Fenwick(int n) : n(n), a(n) {}
-    void add(int x, T v) {
-        for (int i = x + 1; i <= n; i += i & -i) {
-            a[i - 1] += v;
+    int _n;
+    std::vector<T> _a;
+    Fenwick(int n) : _n(n), _a(n) {}
+    void add(int k, T c) {
+        for (int i = k + 1; i <= _n; i += i & -i) {
+            _a[i - 1] += c;
         }
     }
-    T sum(int x) {
+    T sum(int k) {
         T ans = 0;
-        for (int i = x; i > 0; i -= i & -i) {
-            ans += a[i - 1];
+        for (int i = k + 1; i > 0; i -= i & -i) {
+            ans += _a[i - 1];
         }
         return ans;
     }
     T sum(int l, int r) {
-        return sum(r) - sum(l);
+        return l == 0 ? sum(r) : sum(r) - sum(l - 1);
     }
 };
