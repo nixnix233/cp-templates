@@ -21,9 +21,9 @@ struct SegmentTree {
 		}
 		return res;
 	}
-	void add(int k, Monoid c) {
+	void set(int k, Monoid x) {
 		k += _p2;
-		_a[k] = T::merge(_a[k], c);
+        _a[k] = x;
 		for (k /= 2; k >= 1; k /= 2) {
 			_a[k] = T::merge(_a[k * 2], _a[k * 2 + 1]);
 		}	
