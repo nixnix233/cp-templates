@@ -43,6 +43,9 @@ struct SegmentTree {
     void set(int pos, Monoid x) {
         set(1, 1, _n, pos + 1, x);
     }
+    Monoid operator[](int k) const {
+        return _a[k + _n];
+    }
 };
 struct SegmentTreeNode {
     using Monoid = int;
