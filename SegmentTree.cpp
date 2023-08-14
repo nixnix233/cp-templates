@@ -28,6 +28,9 @@ struct SegmentTree {
 			_a[k] = T::merge(_a[k * 2], _a[k * 2 + 1]);
 		}	
 	}
+    Monoid operator[](int k) const { 
+        return _a[_p2 + k];
+    }
 };
 struct SegmentTreeNode {
 	using Monoid = int;
