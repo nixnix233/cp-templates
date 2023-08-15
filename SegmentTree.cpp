@@ -11,37 +11,23 @@ struct SegmentTree {
             _a[i] = T::merge(_a[i << 1], _a[i << 1 | 1]);
         }
     }
-    Monoid get(int k, int L, int R, int l, int r) {
-        if (l == L && r == R) {
-            return _a[k];
-        }
-        int mid = (L + R) >> 1;
-        if (r <= mid) {
-            return get(k << 1, L, mid, l, r);
-        } else if (l >= mid + 1) {
-            return get(k << 1 | 1, mid + 1, R, l, r);
-        } else {
-            return T::merge(get(k << 1, L, mid, l, mid), get(k << 1 | 1, mid + 1, R, mid + 1, r));
-        }
-    }
-    void set(int k, int L, int R, int pos, Monoid x) {
-        if (L == R) {
-            _a[k] = x;
-            return;
-        }
-        int mid = (L + R) >> 1;
-        if (pos <= mid) {
-            set(k << 1, L, mid, pos, x);
-        } else {
-            set(k << 1 | 1, mid + 1, R, pos, x);
-        }
-        _a[k] = T::merge(_a[k << 1], _a[k << 1 | 1]);
-    }
     Monoid get(int l, int r) {
-        return get(1, 1, _n, l + 1, r + 1);
+        l += _n, r += _n;
+        Monoid res_l = T::id();
+        Monoid res_r = T::id();
+        while (l <= r) {
+            if (l % 2 == 1) { res_l = T::merge(res_l, _a[l++]); }
+            if (r % 2 == 0) { res_r = T::merge(_a[r--], res_r); }
+            l >>= 1, r >>= 1;
+        }
+        return T::merge(res_l, res_r);
     }
-    void set(int pos, Monoid x) {
-        set(1, 1, _n, pos + 1, x);
+    void set(int k, Monoid x) {
+        k += _n;
+        _a[k] = x;
+        while (k >>= 1) {
+            _a[k] = T::merge(_a[k << 1], _a[k << 1 | 1]);
+        }
     }
     Monoid operator[](int k) const {
         return _a[k + _n];
