@@ -1,3 +1,5 @@
+const int P = 1E9 + 7;
+
 template <int P>
 struct Zn {
     int x;
@@ -75,5 +77,4 @@ struct Zn {
         return out << a.x;
     }
 };
-const int P = 1E9 + 7;
 using Z = Zn<P>;
