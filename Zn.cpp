@@ -3,7 +3,6 @@ struct Zn {
     int x;
     Zn() : x{0} {}
     Zn(i64 x) : x{norm(x)} {}
-    Zn(int x) : x{norm(x)} {}
 
     int norm(i64 val) {
         x = (val % P + P) % P;
