@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using i64 = long long;
-
 template <int P>
 struct Zn {
     int x;
