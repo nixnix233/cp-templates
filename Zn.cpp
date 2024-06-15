@@ -7,8 +7,7 @@ struct Zn {
     Zn(i64 x) : x{norm(x)} {}
 
     int norm(i64 val) {
-        x = (val % P + P) % P;
-        return x;
+        return (val % P + P) % P;
     }
     Zn inv() {
         return power(*this, P - 2);
