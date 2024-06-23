@@ -21,4 +21,15 @@ struct Fenwick {
     T sum(int l, int r) {
         return sum(r) - sum(l);
     }
+    int kth(T x) {
+        int k = 0;
+        T cur{};
+        for (int len = 1 << std::__lg(n); len; len /= 2) {
+            if (k + len <= n && cur + a[k + len - 1] <= x) {
+                cur += a[k + len - 1];
+                k += len;
+            }
+        }
+        return k;
+    }
 };
