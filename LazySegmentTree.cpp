@@ -68,7 +68,7 @@ struct LazySegmentTree {
         r += offset_;
         for (int i = lg_; i >= 1; i--) {
             if (bitcut(l, i) != l) { push(l >> i); }
-            if (bitcut(r + 1, i) != r + 1) {  push(r >> i); }
+            if (bitcut(r + 1, i) != r + 1) { push(r >> i); }
         }
         [&](int l, int r) {
             while (l <= r) {
